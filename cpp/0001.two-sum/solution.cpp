@@ -11,7 +11,21 @@ using namespace std;
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> numMap; // value : index
         
+        for (int i = 0; i < nums.size(); i++) {
+            int complement = target - nums[i];
+            
+            // Check if the complement exists in the map
+            if (numMap.find(complement) != numMap.end()) {
+                return {numMap[complement], i};
+            }
+            
+            // Otherwise, add the current number to the map
+            numMap[nums[i]] = i;
+        }
+        
+        return {}; // Return empty if no solution is found
     }
 };
 
